@@ -1,0 +1,30 @@
+#include <stdio.h>
+#include <unistd.h>
+#include <fcntl.h>
+#include <string.h>
+#include <syslog.h>
+int main(int argc, char *argv[])
+{
+	openlog("writer",0,LOG_USER);
+	if(argc < 3)
+	{
+		syslog(LOG_ERR,"Error: Invalid number of arguments\n");
+		return 1;
+	}
+	int assign2_fd;
+	assign2_fd=open(argv[1],O_CREAT|O_RDWR,S_IWUSR|S_IRUSR);
+	if(assign2_fd==-1)
+	{
+		syslog(LOG_ERR,"Could not create file\n");
+		return 1;
+	}
+	else
+	{
+		int written_bytes=write(assign2_fd, argv[2], strlen(argv[2]));
+		if(written_bytes!=strlen(argv[2]))
+			syslog(LOG_ERR,"Did not complete write\n");
+		else
+			syslog(LOG_DEBUG,"Writing %s to %s",argv[2],argv[1]);
+		return 0;
+	}
+}
