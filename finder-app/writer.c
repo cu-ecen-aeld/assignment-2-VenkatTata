@@ -44,4 +44,5 @@ int main(int argc, char *argv[])
 			syslog(LOG_DEBUG,"Writing %s to %s",argv[2],argv[1]);
 		return 0;
 	}
+	close(assign2_fd);
 }
