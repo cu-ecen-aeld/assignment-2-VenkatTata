@@ -17,6 +17,8 @@ then
 	else
 		echo "ERROR:Too many parameters"
 	fi
+	echo "Usage: ./finder.sh [path_to_search] [string_to_be searched]"
+	echo "Searches for files in the specified path for the string specified as second argument"
 	exit 1
 fi
 
