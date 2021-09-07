@@ -33,7 +33,6 @@ int main(int argc, char *argv[])
 	if(assign2_fd==-1)
 	{
 		syslog(LOG_ERR,"Could not create file\n");
-		return 1;
 	}
 	else
 	{
@@ -42,7 +41,7 @@ int main(int argc, char *argv[])
 			syslog(LOG_ERR,"Did not complete write\n");
 		else
 			syslog(LOG_DEBUG,"Writing %s to %s",argv[2],argv[1]);
-		return 0;
 	}
 	close(assign2_fd);
+	return 0;
 }
